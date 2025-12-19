@@ -1,0 +1,21 @@
+{
+  "name": "osint-telegram-bot",
+  "version": "1.0.0",
+  "description": "Premium OSINT Telegram Bot",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --hot index.js",
+    "start": "bun index.js"
+  },
+  "dependencies": {
+    "node-telegram-bot-api": "^0.64.0",
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "@prisma/client": "^5.7.1",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.7.1"
+  }
+}

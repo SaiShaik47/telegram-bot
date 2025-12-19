@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.db"
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  telegramId  String   @unique
+  username    String?
+  firstName   String?
+  lastName    String?
+  isPremium   Boolean  @default(false)
+  credits     Int      @default(100)
+  totalQueries Int     @default(0)
+  dailyQueries Int     @default(0)
+  lastReset   DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Query {
+  id          Int      @id @default(autoincrement())
+  userId      String
+  command     String
+  query       String
+  result      String?
+  success     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@map("queries")
+}
+
+model AdminLog {
+  id          Int      @id @default(autoincrement())
+  adminId     String
+  action      String
+  targetId    String?
+  details     String?
+  createdAt   DateTime @default(now())
+
+  @@map("admin_logs")
+}
+
+model Stats {
+  id          Int      @id @default(autoincrement())
+  totalUsers  Int      @default(0)
+  premiumUsers Int     @default(0)
+  totalQueries Int     @default(0)
+  dailyQueries Int     @default(0)
+  lastReset   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("stats")
+}
